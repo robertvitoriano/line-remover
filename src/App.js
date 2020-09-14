@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
-
 function App() {
+  const [text, setText] = useState("");
+  const[correctedText,setCorrectedText] = useState('');
+
+  const handleRemotion= (e)=>{
+    e.preventDefault();
+    const firstLine = text.split("\n")[0];
+    console.log(firstLine);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Digite o Texto Abaixo</h1>
+      <textarea
+        value={text}
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+      />
+      <h1>As linhas que você quer remover contém</h1>
+      <input/>
+      <button onClick={e=>handleRemotion(e)}>Remover</button>
+      <h1>Texto Corrigido</h1>
+      <textarea
+        value={correctedText}
+      />
     </div>
   );
 }
